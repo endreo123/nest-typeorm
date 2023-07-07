@@ -1,21 +1,16 @@
-import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('produto_caracteristicas')
-export class ProdutoCaracteristica {
+@Entity('produto_imagens')
+export class ProdutoImagem {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column({
-        name: 'nome',
+        name: 'url',
         length: 100,
         nullable: false
     })
-    nome: string;
-
+    url: string;
     @Column({
         name: 'descricao',
         length: 100,
