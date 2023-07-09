@@ -1,11 +1,13 @@
 import {
     Entity,
     Column,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    ManyToOne
 } from 'typeorm';
+import { ProdutoEntity } from './produto.entity';
 
 @Entity('produto_caracteristicas')
-export class ProdutoCaracteristica {
+export class ProdutoCaracteristicaEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -22,4 +24,11 @@ export class ProdutoCaracteristica {
         nullable: false
     })
     descricao: string;
+
+    @ManyToOne(
+        () => ProdutoEntity,
+        produto => produto.caracteristicas,
+        { orphanedRowAction: 'delete', onDelete: 'CASCADE', onUpdate: 'CASCADE' }
+    )
+    produto: ProdutoEntity;
 }
